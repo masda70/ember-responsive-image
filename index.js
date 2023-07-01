@@ -7,7 +7,7 @@ const fs = require('fs-extra');
 const map = require('broccoli-stew').map;
 const mergeTrees = require('broccoli-merge-trees');
 const SilentError = require('silent-error');
-const minimatch = require('minimatch');
+const { minimatch } = require('minimatch');
 const walk = require('walk-sync');
 
 const defaultDeviceWidths = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
@@ -395,7 +395,7 @@ module.exports = {
           },
           plugins:
             process.env.EMBER_ENV === 'production'
-              ? [resolve(), cjs(), require('rollup-plugin-terser').terser()]
+              ? [resolve(), cjs(), require('@rollup/plugin-terser').terser()]
               : [resolve(), cjs()],
         },
       });
